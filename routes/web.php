@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MentorshipRequestController;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,5 +27,19 @@ Route::middleware(['auth'])->group(function () {
     Route::view('/mentor/dashboard', 'dashboards.mentor')->name('mentor.dashboard');
     Route::view('/student/dashboard', 'dashboards.student')->name('student.dashboard');
 });
+
+// Mentorship Request Routes
+Route::middleware(['auth'])->group(function () {
+    Route::post('/requests/send', [MentorshipRequestController::class, 'send']);
+    Route::get('/requests/incoming', [MentorshipRequestController::class, 'incoming']);
+    Route::post('/requests/{id}/accept', [MentorshipRequestController::class, 'accept']);
+    Route::post('/requests/{id}/reject', [MentorshipRequestController::class, 'reject']);
+});
+
+// Optional: Test form for sending mentorship request via UI (instead of Postman)
+Route::get('/test-request', function () {
+    return view('testform');
+});
+Route::post('/test-request', [MentorshipRequestController::class, 'send']);
 
 require __DIR__.'/auth.php';
