@@ -43,3 +43,11 @@ Route::get('/test-request', function () {
 Route::post('/test-request', [MentorshipRequestController::class, 'send']);
 
 require __DIR__.'/auth.php';
+
+use App\Http\Controllers\FeedbackController;
+
+Route::middleware('auth')->group(function () {
+    Route::get('/feedback', [FeedbackController::class, 'create'])->name('feedback.create');
+    Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+});
+

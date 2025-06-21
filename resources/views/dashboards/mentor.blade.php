@@ -1,6 +1,18 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Mentor Dashboard') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-    <h1 class="text-2xl font-bold">Welcome, {{ Auth::user()->name }}</h1>
-    <p class="mt-2">You are logged in as <strong>{{ Auth::user()->role }}</strong>.</p>
-@endsection
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    Welcome, Mentor {{ Auth::user()->name }}!<br>
+                    You are logged in as <strong>{{ Auth::user()->role }}</strong>.
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
