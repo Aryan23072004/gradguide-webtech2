@@ -1,61 +1,84 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# GradGuide — Laravel Role-Based Dashboard System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+GradGuide is a Laravel-based web application with role-based dashboards for Admin, Mentor, and Student. Built with Laravel 12, Breeze, Tailwind CSS, and role authentication logic.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ✅ Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Laravel Breeze authentication (login/register)
+- Role-based redirect after login:
+  - Admin → `/admin/dashboard`
+  - Mentor → `/mentor/dashboard`
+  - Student → `/student/dashboard`
+- Dynamic navbar with role, profile, and logout
+- Profile management (edit name, email, password)
+- Clean Blade templating using `@extends` and `@yield`
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🧑‍💻 Roles and Test Users
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Role    | Email                   | Password     |
+|---------|-------------------------|--------------|
+| Admin   | admin@gradguide.com     | admin123     |
+| Mentor  | mentor@gradguide.com    | mentor123    |
+| Student | student@gradguide.com   | student123   |
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+To manually add users, use Laravel Tinker:
+```bash
+php artisan tinker
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+php
 
-## Laravel Sponsors
+\App\Models\User::create([
+  'name' => 'Admin User',
+  'email' => 'admin@gradguide.com',
+  'password' => bcrypt('admin123'),
+  'role' => 'admin'
+]);
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+ Setup instructions 
+ 1.Clone the repo
+ git clone https://github.com/Aryan23072004/gradguide-webtech2.git
+cd gradguide-webtech2
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+2. Install Dependencies
+composer install
+npm install
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. Environment Setup
 
-## Code of Conduct
+cp .env.example .env
+php artisan key:generate
+Edit .env file with your DB settings:
+DB_DATABASE=gradguide
+DB_USERNAME=root
+DB_PASSWORD=yourpassword
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. Run Migrations
+php artisan migrate
 
-## Security Vulnerabilities
+5. Start Dev Servers
+php artisan serve
+npm run dev
+Visit the app at: http://localhost:8000
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Stack
+Laravel 12
 
-## License
+Laravel Breeze
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Tailwind CSS
+
+MySQL
+
+PHP 8.3+
+
+Vite
+
+
+
+
