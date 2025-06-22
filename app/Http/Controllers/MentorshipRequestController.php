@@ -9,7 +9,6 @@ class MentorshipRequestController extends Controller
 {
     public function send(Request $request)
     {
-    $myVar = "";
         $request->validate([
             'mentor_id' => 'required|exists:users,id',
             'message' => 'nullable|string',
