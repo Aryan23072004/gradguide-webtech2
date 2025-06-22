@@ -17,6 +17,12 @@
             @auth
                 <span class="text-sm">Role: <strong>{{ Auth::user()->role }}</strong></span>
                 <a href="{{ route('profile.edit') }}" class="text-blue-600 hover:underline">Profile</a>
+
+                <!-- ✅ Submit Review Button -->
+                <a href="{{ route('reviews.create') }}" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition text-sm">
+                    Submit Review
+                </a>
+
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="text-red-600 hover:underline">Logout</button>
@@ -30,7 +36,6 @@
         </div>
     </nav>
 
-    <!-- ✅ FIX: Use component slot rendering -->
     @isset($header)
         <header class="bg-white shadow">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -41,7 +46,6 @@
 
     <main class="p-6">
         {{ $slot }}
-
     </main>
 
 </body>

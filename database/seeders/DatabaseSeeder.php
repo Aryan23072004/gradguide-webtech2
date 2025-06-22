@@ -10,21 +10,20 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-
         // Create an admin
-         $admin = User::factory()->create([
-             'name' => 'Admin User',
+        $admin = User::factory()->create([
+            'name' => 'Admin User',
             'email' => 'admin@gradguide.com',
             'role' => 'admin',
             'password' => bcrypt('admin123'),
-]);
+        ]);
 
         // Create a student
         $student = User::factory()->create([
             'name' => 'Student User',
             'email' => 'student@gradguide.com',
             'role' => 'student',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('student123'),
         ]);
 
         // Create a mentor
@@ -32,15 +31,18 @@ class DatabaseSeeder extends Seeder
             'name' => 'Mentor User',
             'email' => 'mentor@gradguide.com',
             'role' => 'mentor',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('mentor123'),
         ]);
 
-        // Call SubjectSeeder
-        $this->call(SubjectSeeder::class);
+        // Seed subjects, courses, and professors
+        $this->call([
+            SubjectSeeder::class,
+            CourseSeeder::class,
+            ProfessorSeeder::class,
+        ]);
 
-        // Attach all subjects to both users
+        // Attach all subjects to student and mentor
         $subjects = Subject::all();
-
         $student->subjects()->attach($subjects->pluck('id'));
         $mentor->subjects()->attach($subjects->pluck('id'));
     }
