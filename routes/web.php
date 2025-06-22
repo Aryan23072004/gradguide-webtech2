@@ -19,3 +19,9 @@ Route::get('/test-request', function () {
 });
 
 Route::post('/test-request', [MentorshipRequestController::class, 'send']);
+use App\Http\Controllers\CommentController;
+
+Route::middleware('auth')->group(function () {
+    Route::post('/comments', [CommentController::class, 'store']);
+    Route::get('/comments/{review_id}', [CommentController::class, 'show']);
+});
