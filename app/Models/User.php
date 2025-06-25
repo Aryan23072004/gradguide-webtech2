@@ -57,4 +57,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class);
     }
+
+    /**
+     * Get all comments submitted by the user.
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Get all reports submitted by the user.
+     */
+    public function reports(): HasMany
+    {
+        return $this->hasMany(Report::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Course extends Model
 {
@@ -13,7 +14,8 @@ class Course extends Model
     protected $fillable = [
         'name',
         'code',
-        'description',
+        'department',
+        'professor_id',
     ];
 
     /**
@@ -22,5 +24,13 @@ class Course extends Model
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    /**
+     * Get the professor for the course.
+     */
+    public function professor(): BelongsTo
+    {
+        return $this->belongsTo(Professor::class);
     }
 }

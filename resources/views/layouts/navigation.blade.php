@@ -15,6 +15,24 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    
+                    <x-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.*')">
+                        {{ __('Courses') }}
+                    </x-nav-link>
+                    
+                    <x-nav-link :href="route('professors.index')" :active="request()->routeIs('professors.*')">
+                        {{ __('Professors') }}
+                    </x-nav-link>
+                    
+                    <x-nav-link :href="route('reviews.index')" :active="request()->routeIs('reviews.*')">
+                        {{ __('Reviews') }}
+                    </x-nav-link>
+                    
+                    @if(Auth::user()->isAdmin())
+                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')">
+                            {{ __('Admin Panel') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -36,6 +54,10 @@
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
+                        </x-dropdown-link>
+                        
+                        <x-dropdown-link :href="route('reports.my')">
+                            {{ __('My Reports') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -70,6 +92,24 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            
+            <x-responsive-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.*')">
+                {{ __('Courses') }}
+            </x-responsive-nav-link>
+            
+            <x-responsive-nav-link :href="route('professors.index')" :active="request()->routeIs('professors.*')">
+                {{ __('Professors') }}
+            </x-responsive-nav-link>
+            
+            <x-responsive-nav-link :href="route('reviews.index')" :active="request()->routeIs('reviews.*')">
+                {{ __('Reviews') }}
+            </x-responsive-nav-link>
+            
+            @if(Auth::user()->isAdmin())
+                <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')">
+                    {{ __('Admin Panel') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
@@ -82,6 +122,10 @@
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+                
+                <x-responsive-nav-link :href="route('reports.my')">
+                    {{ __('My Reports') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
