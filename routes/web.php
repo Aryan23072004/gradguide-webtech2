@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MentorshipRequestController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ProfessorController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,4 +58,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 });
+
+// Course Routes (public)
+Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+Route::get('/courses/{id}', [CourseController::class, 'show'])->name('courses.show');
+
+// Professor Routes (public)
+Route::get('/professors', [ProfessorController::class, 'index'])->name('professors.index');
+Route::get('/professors/{id}', [ProfessorController::class, 'show'])->name('professors.show');
 
