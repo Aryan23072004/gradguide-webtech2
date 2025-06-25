@@ -1,3 +1,29 @@
+# GradGuide
+
+GradGuide is a Laravel web app for students to rate and review courses and professors.
+
+## Features
+- Browse/search courses & professors
+- Write reviews and comments
+- Admin dashboard for moderation
+- User authentication (student/admin)
+
+## Quick Start
+1. Clone the repo
+2. Run `composer install` and `npm install`
+3. Copy `.env.example` to `.env` and set DB credentials
+4. Run `php artisan key:generate`
+5. Run migrations: `php artisan migrate --seed`
+6. Start: `php artisan serve`
+
+## Test Users
+- Admin: admin@gradguide.com / admin123
+- Mentor: mentor@gradguide.com / mentor123
+- Student: student@gradguide.com / student123
+
+---
+Made for students. For details, see the full documentation.
+
 # GradGuide - Student Course & Professor Review Platform
 
 A comprehensive web application built with Laravel that allows students to rate and review courses and professors, fostering a supportive academic community.
